@@ -1,0 +1,30 @@
+# WiFi credentials — never commit
+**/secrets.h
+UDC-ServoTester/secrets.h
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Arduino / build artifacts
+build/
+**/build/
+*.elf
+*.bin
+*.map
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Backup / temp
+*.bak
+*.tmp
+*~.h
+*~.cpp
+*~.ino

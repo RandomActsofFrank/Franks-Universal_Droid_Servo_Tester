@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Optional sketch-local sample — NOT installed by default.
+#
+# To use (from UDC repo root), either:
+#   1. Prefer: run  UDC-ServoTester/scripts/push.sh  instead of plain git push
+#   2. Or copy this into .git/hooks/pre-push (repo-wide — avoid if UDC already
+#      has hooks you care about):
+#
+#        cp UDC-ServoTester/hooks/pre-push.sample .git/hooks/pre-push
+#        chmod +x .git/hooks/pre-push
+#
+# This sample only reminds you; it does not auto-bump (bumps change files that
+# must be in the commit being pushed).
+
+set -euo pipefail
+ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
+if [[ -z "${ROOT}" ]]; then
+  exit 0
+fi
+if [[ -x "${ROOT}/UDC-ServoTester/scripts/bump-version.sh" ]]; then
+  VER="$("${ROOT}/UDC-ServoTester/scripts/bump-version.sh" show 2>/dev/null || true)"
+  echo "note: UDC-ServoTester version is ${VER:-unknown}."
+  echo "      Before pushing sketch changes, run:"
+  echo "        UDC-ServoTester/scripts/bump-version.sh push"
+  echo "      then include the version files in your commit, or use:"
+  echo "        UDC-ServoTester/scripts/push.sh"
+fi
+exit 0
