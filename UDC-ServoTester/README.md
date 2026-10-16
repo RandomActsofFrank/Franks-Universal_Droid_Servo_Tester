@@ -1,57 +1,14 @@
 # UDC Servo & LED Tester
 
-**Version:** `2026.10-42.05` (ISO-week: `YYYY.MM-WW.NN`)
+**Version:** `2026.10-42.06`
+
+ESP32 Servo & LED Tester — companion sketch for Franks-Universal_Droid_Control (not public yet due to ongoing development.)
 
 Arduino IDE sketch for ESP32 DevKit boards (30-pin or 38-pin): six-servo PWM tester plus a WS2811/NeoPixel strip tester using the same public LED effects as Universal Droid Control (`UdcLedFx`).
 
 WiFi hostname is **`UDC-ServoTester`** (set before `WiFi.begin`). Serial Monitor: **115200** baud.
 
 Web UI serves `/banner.png` and `/favicon.png` from embedded copies of `Images/large_banner.png` / `Images/fav_icon.png` (also kept as sketch-local `large_banner.png` / `favicon.png` + `BannerPng.h` / `FaviconPng.h`).
-
-## Versioning
-
-Scheme: **`YYYY.MM-WW.NN`** (example: `2026.10-42.01`).
-
-| Part | Meaning |
-|------|---------|
-| `YYYY` | Calendar year |
-| `MM` | Calendar month |
-| `WW` | **ISO week** number (`date +%V`) |
-| `NN` | Build within that week |
-
-| Rule | Behavior |
-|------|----------|
-| Week change | If today’s `YYYY.MM-WW` ≠ version prefix → set `YYYY.MM-WW.01` |
-| Each push | Same ISO week → increment `.NN` (`…01` → `…02`). Week rollover already sets `.01` — no double bump |
-| By request | Explicit bump / set via the script below |
-
-Source of truth: `#define UDC_SERVO_TESTER_VERSION` in `UDC-ServoTester.ino`. The script also updates the web UI labels in `WebUi.h` and this README. Serial boot uses `kSketchVersion` (same define).
-
-```bash
-cd "UDC-ServoTester"
-
-./scripts/bump-version.sh show          # print current
-./scripts/bump-version.sh auto          # new week → .01, else +1
-./scripts/bump-version.sh push          # same as auto (run before git push)
-./scripts/bump-version.sh date          # force today's YYYY.MM-WW.01
-./scripts/bump-version.sh set 2026.10-42.03
-```
-
-**Before pushing sketch changes**, bump so the commit includes the new version:
-
-```bash
-./scripts/bump-version.sh push
-# then stage/commit the version files with your other changes, and git push
-```
-
-Or use the wrapper (bumps, commits **only** the version files if they changed, then `git push`):
-
-```bash
-./scripts/push.sh
-# optional: ./scripts/push.sh origin main
-```
-
-No repo-wide git hook is installed (UDC root may already have hooks). An optional reminder sample lives at `hooks/pre-push.sample` — prefer `scripts/push.sh` or a manual `bump-version.sh push` instead.
 
 ## Board profile (30-pin vs 38-pin)
 
@@ -94,18 +51,24 @@ For a 38-pin board, flip to:
 
 ## Libraries (Arduino Library Manager)
 
-- **ESP32Servo**
-- **Adafruit NeoPixel**
-- **ArduinoJson** (v6 recommended)
+Install the **esp32** board package by **Espressif Systems** first (Boards Manager → search `esp32`).
 
-WiFi and WebServer come with the ESP32 Arduino core.
+Then: **Sketch → Include Library → Manage Libraries…** and search these **exact** names:
+
+| Library Manager name | Author | Notes |
+|----------------------|--------|--------|
+| **ArduinoJson** | **Benoit Blanchon** | **Use v6.x** — this sketch uses `StaticJsonDocument` / ArduinoJson v6 API. Do **not** install Arduino_JSON, aJSON, or other JSON libraries. If Library Manager offers v7, pick a **6.x** release (version dropdown). |
+| **ESP32Servo** | Kevin Harrington / John K. Bennett | ESP32 servo PWM (`#include <ESP32Servo.h>`). |
+| **Adafruit NeoPixel** | Adafruit | WS2811/WS2812 (`#include <Adafruit_NeoPixel.h>`). |
+
+Built-in with the ESP32 Arduino core (no Library Manager install): **WiFi**, **WebServer**.
 
 ## WiFi secrets
 
 1. Copy `secrets.example.h` → `secrets.h`
 2. Set `WIFI_SSID` / `WIFI_PASSWORD`
 
-A local `secrets.h` for the Imperial Senate network may already exist on this machine. **`secrets.h` is gitignored — never commit it.**
+A local `secrets.h` for the Imperial Senate network may already exist on this machine. Never commit `secrets.h`.
 
 ## Board select & flash
 

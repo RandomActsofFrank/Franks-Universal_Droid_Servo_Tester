@@ -21,7 +21,7 @@
 
 // ISO-week version: YYYY.MM-WW.NN (WW = ISO week number)
 #ifndef UDC_SERVO_TESTER_VERSION
-#define UDC_SERVO_TESTER_VERSION "2026.10-42.05"
+#define UDC_SERVO_TESTER_VERSION "2026.10-42.06"
 #endif
 static const char *kSketchVersion = UDC_SERVO_TESTER_VERSION;
 
