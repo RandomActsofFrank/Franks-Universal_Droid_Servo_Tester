@@ -176,7 +176,7 @@ input[type=number]:focus,select:focus{outline:2px solid rgba(47,208,232,.28);bor
 </section>
 <footer class="footer">
   <span class="status" id="status">Connecting…</span>
-  <span class="ver">UDC Servo &amp; LED Tester · v2026.10-42.06</span>
+  <span class="ver">UDC Servo &amp; LED Tester · v2026.10-42.07</span>
 </footer>
 
 <script>

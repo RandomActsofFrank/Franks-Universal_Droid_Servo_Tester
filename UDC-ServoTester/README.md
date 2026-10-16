@@ -1,6 +1,6 @@
 # UDC Servo & LED Tester
 
-**Version:** `2026.10-42.06`
+**Version:** `2026.10-42.07`
 
 ESP32 Servo & LED Tester — companion sketch for Franks-Universal_Droid_Control (not public yet due to ongoing development.)
 
@@ -101,3 +101,13 @@ LED frames render in `loop()` so animations keep running while the web UI is ope
 ## Effects
 
 Public UDC set: Solid, RGB step, Rainbow chase, Chase, DJ Light, Fade, Flow Stripe, Gradient, Pacifica, Rainbow, Twinkle, Fire, Breathe, Theater, Comet, Color wipe, Scanner, Police bar. Legacy White / Candle / Strobe sanitize like UDC (→ Solid / Fire / Chase).
+
+## License
+
+ISC — free and open source. See [LICENSE](../LICENSE).
+
+## Support
+
+Universal Droid Control is donationware. Donations help cover development but are never required:
+
+[Donate via PayPal](https://www.paypal.com/donate/?hosted_button_id=BDQCA9ATGU298)

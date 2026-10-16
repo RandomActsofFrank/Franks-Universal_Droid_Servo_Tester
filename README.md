@@ -28,3 +28,13 @@ Six-channel servo PWM tester (500–2500 μs) plus WS2811/NeoPixel strip with UD
 | `UDC-ServoTester/` | Arduino sketch (open the `.ino` here) |
 | `UDC-ServoTester/scripts/` | Helper scripts |
 | `UDC-ServoTester/README.md` | Full pin maps, API, and flash steps |
+
+## License
+
+ISC — free and open source. See [LICENSE](LICENSE).
+
+## Support
+
+Universal Droid Control is donationware. Donations help cover development but are never required:
+
+[Donate via PayPal](https://www.paypal.com/donate/?hosted_button_id=BDQCA9ATGU298)
